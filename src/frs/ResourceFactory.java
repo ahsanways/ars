@@ -1,46 +1,33 @@
 package frs;
 
+import service.ReadData;
+import service.Resource;
+import database.Database;
+
 final public class ResourceFactory {
 
-	private ResourceFactory(){
-		
+	private ResourceFactory() {
+
 	}
-	
+
 	public static Resource getAgent(String name) {
 		return new Agent(name);
 	}
-	
-	public static Resource getReservation(FlightInstance flightInstance) {
-		//flightInstance = getFlightInstance();
-		return new Reservation(flightInstance);
+
+	public static Resource getReservation(FlightInstance flightInstance, Passenger passenger) {
+		// flightInstance = getFlightInstance();
+		Reservation res = new Reservation(flightInstance, passenger);
+		Database.resCodeMap.put(res.resCode, res);
+		return res;
 	}
-	
+
 	public static Resource getFlightInstance() {
 		return new FlightInstance();
 	}
-	
-	public static Resource getTicket(/*res-code*/) {
-		return new Ticket();
+
+	public static Ticket getTicket(String resCode, FlightInstance f) {
+		Ticket t = new Ticket(resCode, f);
+		Database.ticketNumMap.put(t.getTicketNumber(), t);
+		return t;
 	}
-	
-	//investigate this further
-	public static Resource getResource(Resource resource) throws Exception {
-		if(resource.getClass() != Reservation.class || 
-				resource.getClass() != Ticket.class ||
-				resource.getClass() != Address.class ||
-				resource.getClass() != Airline.class||
-				resource.getClass() != FlightInstance.class||
-				resource.getClass() != Flight.class||
-				resource.getClass() != Airport.class ||
-				resource.getClass() != Passenger.class||
-				resource.getClass() != Agent.class)
-			throw new IllegalResourceException("Invalid Resource!!");
-		
-		if(resource.getClass() != Reservation.class)
-			return new Reservation(new FlightInstance());
-		if(resource.getClass() != Agent.class)
-			return new Agent(Agent.class.getName()); //investigate this further
-		return new Ticket();
-	}
-	
 }

@@ -1,16 +1,21 @@
 package frs;
 
+import service.ReadData;
+import service.Resource;
+
 public class Ticket implements Resource {
 
 	private static int ticketID;
 	private FlightInstance flightInstance;
 	private long ticketNum;
+	private Reservation reservation;
 	
 	//Map resCode to Reservation
-	Ticket(/*String resCode*/){
+	Ticket(String resCode, FlightInstance f){
 		ticketID++;
 		this.ticketNum = getTicketNumber();
-		//give it a flight instance as well
+		this.reservation = ReadData.getReservationByCode(resCode);
+		this.flightInstance = f;
 	}
 	
 	public int getTicketID() {
