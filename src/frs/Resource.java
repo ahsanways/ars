@@ -1,5 +1,5 @@
 package frs;
 
-public class Resource {
-	
+public interface Resource {
+
 }
