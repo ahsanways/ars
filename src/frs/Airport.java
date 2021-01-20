@@ -1,10 +1,14 @@
 package frs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Airport {
 	int id;
 	String code;
 	String name;
 	Address address;
+	List<Flight> flights;
 
 	public Airport(int id, String code, String name, Address address) {
 		super();
@@ -12,6 +16,7 @@ public class Airport {
 		this.code = code;
 		this.name = name;
 		this.address = address;
+		flights = new ArrayList<Flight>();
 	}
 
 	public int getId() {
@@ -44,6 +49,14 @@ public class Airport {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+	
+	public List<Flight> getFlights(){
+		return flights;
+	}
+	
+	public void addFlight(Flight flight) {
+		this.flights.add(flight);
 	}
 
 	@Override
