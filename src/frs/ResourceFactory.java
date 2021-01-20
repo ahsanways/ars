@@ -6,6 +6,24 @@ final public class ResourceFactory {
 		
 	}
 	
+	public static Resource getAgent(String name) {
+		return new Agent(name);
+	}
+	
+	public static Resource getReservation(FlightInstance flightInstance) {
+		//flightInstance = getFlightInstance();
+		return new Reservation(flightInstance);
+	}
+	
+	public static Resource getFlightInstance() {
+		return new FlightInstance();
+	}
+	
+	public static Resource getTicket(/*res-code*/) {
+		return new Ticket();
+	}
+	
+	//investigate this further
 	public static Resource getResource(Resource resource) throws Exception {
 		if(resource.getClass() != Reservation.class || 
 				resource.getClass() != Ticket.class ||
