@@ -10,27 +10,36 @@ import database.Database;
 public class Reservation implements Resource {
 
 	List<Ticket> tickets;
-	List<FlightInstance> flightInstances;
+	private List<FlightInstance> flightInstances;
 	Passenger passenger;
-	String resCode;
+	private String resCode;
 	int agentID;
-	
+
 	Reservation(FlightInstance flightInstance, Passenger passenger){
 		this.flightInstances = new ArrayList<>();
 		flightInstances.add(flightInstance);
 		this.resCode = Helper.getReservationCode();
-		//this.passenger = new Passenger();
+		this.passenger = passenger;
 	}
 	
-	public List<Ticket> issueTickets(Reservation res){
-		for(FlightInstance f : flightInstances) {
-			Ticket t = ResourceFactory.getTicket(resCode,f);
-			tickets.add(t);
-		}
+	Reservation(FlightInstance flightInstance, Passenger passenger, Agent agent){
+		this.flightInstances = new ArrayList<>();
+		flightInstances.add(flightInstance);
+		this.resCode = Helper.getReservationCode();
+		this.passenger = passenger;
+		this.agentID = agent.getAgentID();
+	}
+	
+	public List<FlightInstance> getFlightInstances(){
+		return this.flightInstances;
+	}
+	
+	public String getResCode() {
+		return this.resCode;
+	}
+	
+	public List<Ticket> getTickets(){
+		this.tickets = Helper.issueTickets(this);
 		return tickets;
 	}
-	
-//	private boolean confirmReservation() {
-//		
-//	}
 }

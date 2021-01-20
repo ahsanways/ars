@@ -14,10 +14,17 @@ final public class ResourceFactory {
 		return new Agent(name);
 	}
 
-	public static Resource getReservation(FlightInstance flightInstance, Passenger passenger) {
+	public static Reservation getReservationByPassenger(FlightInstance flightInstance, Passenger passenger) {
 		// flightInstance = getFlightInstance();
 		Reservation res = new Reservation(flightInstance, passenger);
-		Database.resCodeMap.put(res.resCode, res);
+		Database.resCodeMap.put(res.getResCode(), res);
+		return res;
+	}
+	
+	public static Reservation getReservationByAgent(FlightInstance flightInstance, Passenger passenger, Agent agent) {
+		// flightInstance = getFlightInstance();
+		Reservation res = new Reservation(flightInstance, passenger);
+		Database.resCodeMap.put(res.getResCode(), res);
 		return res;
 	}
 
@@ -25,7 +32,7 @@ final public class ResourceFactory {
 //		return new FlightInstance();
 //	}
 
-	public static Ticket getTicket(String resCode, FlightInstance f) {
+	public static Ticket createTicket(String resCode, FlightInstance f) {
 		Ticket t = new Ticket(resCode, f);
 		Database.ticketNumMap.put(t.getTicketNumber(), t);
 		return t;
