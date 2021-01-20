@@ -1,8 +1,11 @@
 package frs;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-public class FlightInstance {
+import service.Resource;
+
+public class FlightInstance implements Resource {
 	String id;
 	LocalDate date;
 	Flight flight;
