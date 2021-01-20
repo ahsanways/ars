@@ -1,5 +1,6 @@
 package frs;
 
-public class FlightInstance {
+public class FlightInstance implements Resource {
 
+	
 }
