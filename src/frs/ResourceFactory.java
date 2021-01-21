@@ -13,8 +13,8 @@ final public class ResourceFactory {
 	}
 	
 	public static Flight getFlight(String number, int capacity, Airport departureAirport, Airport arrivalAirport,
-			LocalTime departureTime, LocalTime arrivalTime) {
-		Flight flight = new Flight(number, capacity, departureAirport, arrivalAirport, departureTime, arrivalTime);
+			LocalTime departureTime, LocalTime arrivalTime, Airline airline) {
+		Flight flight = new Flight(number, capacity, departureAirport, arrivalAirport, departureTime, arrivalTime, airline);
 		Database.flights.add(flight);
 		return flight;
 	}

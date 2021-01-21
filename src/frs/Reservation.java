@@ -30,6 +30,10 @@ public class Reservation implements Resource {
 		this.agentID = agent.getAgentID();
 	}
 	
+	public int getAgentID() {
+		return agentID;
+	}
+
 	public List<FlightInstance> getFlightInstances(){
 		return this.flightInstances;
 	}
