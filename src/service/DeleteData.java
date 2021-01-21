@@ -1,12 +1,13 @@
 package service;
 
 import database.Database;
+import frs.Passenger;
 
 public class DeleteData {
 	
 	//CRUD -- DELETE
-	public static void deletePassenger(int passengerId) {
-		Database.passengers.remove(passengerId);
+	public static void deletePassenger(Passenger passenger) {
+		Database.passengers.remove(passenger);
 	}
 	
 	public static void deleteAirport(int airportId) {

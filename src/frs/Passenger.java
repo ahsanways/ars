@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Passenger {
-	private static int passengerId;
+	public static int index = 1;
+	private int passengerId;
 	String firstname;
 	String lastname;
 	LocalDate dob;
@@ -14,7 +15,7 @@ public class Passenger {
 	List<Reservation> reservations;
 
 	public Passenger(String firstname, String lastname, LocalDate dob, String email, Address address) {
-		passengerId++;
+		this.passengerId = index++;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.dob = dob;

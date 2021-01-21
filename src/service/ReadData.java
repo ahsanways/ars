@@ -114,4 +114,17 @@ public class ReadData {
 		}
 		return listOfReservation;
 	}
+	
+	public static List<Passenger> getAllPassengers(){
+		return Database.passengers;
+	}
+	
+	public static Passenger getPassenger(int passengerId){
+		for(Passenger p : Database.passengers) {
+			if(p.getId() == passengerId) {
+				return p;
+			}
+		}
+		return null;
+	}
 }

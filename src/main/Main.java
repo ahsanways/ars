@@ -8,7 +8,8 @@ import java.util.Scanner;
 import frs.*;
 import service.Helper;
 import service.ReadData;
-
+import service.updateData;
+import service.DeleteData;
 public class Main {
 
 	public static void main(String[] args) {
@@ -134,17 +135,26 @@ public class Main {
 				ReadData.viewReservationDetails(reservationCode);
 				break;
 			case 6:
-				// cancel reservation
-				if(!ReadData.cancelReservation(reservationCode)) {
-					System.out.println("Reservation canceled!");
-				} else {
-					System.out.println("Reservation could not be canceled.");
+				for (Reservation res : p1.getReservations()) {
+					ReadData.viewReservationDetails(res.getResCode());
 				}
-				
+				Scanner scanit1 = new Scanner(System.in);
+				System.out.print("Enter reservation code: ");
+				String code = scanit1.nextLine();
+				for (Reservation res : p1.getReservations()) {
+					if(res.getResCode().equals(code)) {
+						if(!ReadData.cancelReservation(code)) {
+							System.out.println("Reservation canceled!");
+						} else {
+							System.out.println("Reservation could not be canceled.");
+						}
+					}
+				}
 				break;
 			case 7:
 				// view own reservations
-				for(Reservation x : p1.getReservations()) {
+//				System.out.println(p1.getReservations());
+				for(Reservation x : ReadData.getReservationByPassenger(p1.getId())) {
 					ReadData.viewReservationDetails(x.getResCode());
 				}
 				
@@ -161,17 +171,49 @@ public class Main {
 			default:
 				System.out.println("Invalid option selected: " + option);
 			}
-			scanner.next();
 		}
 
 	}
 
 	public static void showAdminMenu() {
-		System.out.println("\n1. Do Task 1 for Admin");
-		System.out.println("\n2. Do Task 2 for Admin");
-		System.out.println("\n3. Do Task 3 for Admin");
-		System.out.println("\n4. Do Task 4 for Admin");
-		System.out.println("\nSelect an option to continue...");
+		Address add1 = new Address(1, "A", "B", "C", "D");
+		Passenger p1=ResourceFactory.createPassenger("Henry", "Kato", LocalDate.of(1998, 2, 14), "hkato@miu.edu", add1);
+		while (true) {
+			System.out.println("\n1. Create a new Passenger");
+			System.out.println("\n2. Get a passenger");
+			System.out.println("\n3. Update a passenger");
+			System.out.println("\n4. Delete a passenger");
+			System.out.println("\n5. Get all passengers");
+			System.out.println("\nSelect an option to continue...");
+			Scanner scanner = new Scanner(System.in);
+			int option = scanner.nextInt();
+			switch (option) {
+			case 1:
+				Passenger p = ResourceFactory.createPassenger("Ahsan", "Waseem", LocalDate.of(1998, 2, 14), "awaseem@miu.edu", add1);
+				System.out.println(p);
+				break;
+			case 2:
+				System.out.println(ReadData.getPassenger(p1.getId()));
+				break;
+			case 3:
+				boolean check = updateData.updatePassenger(p1.getId(), "Modified", "Passenger", "modified@email.com");
+				if(check) {
+					System.out.println("Passenger updated Successfully");
+				}
+				break;
+			case 4:
+				DeleteData.deletePassenger(ReadData.getPassenger(p1.getId()));
+				System.out.println("Passenger deleted Successfully");
+				break;
+			case 5:
+				for(Passenger passenger:ReadData.getAllPassengers()) {
+					System.out.println(passenger);
+				}
+				break;	
+			default:
+				System.out.println("Invalid option selected: " + option);
+			}
+		}
 	}
 
 	public static void showAgentMenu() {

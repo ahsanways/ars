@@ -1,6 +1,8 @@
 package service;
 
 import java.security.SecureRandom;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -47,5 +49,15 @@ public class Helper {
 			tickets.add(t);
 		}
 		return tickets;
+	}
+	
+	public static LocalDate dateInput(String userInput) {
+
+	    DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("M/d/yyyy");
+	    LocalDate date = LocalDate.parse(userInput, dateFormat);
+
+
+	    System.out.println(date);
+	    return date ;
 	}
 }

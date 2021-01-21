@@ -11,8 +11,6 @@ public class FlightInstance implements Resource {
 	LocalDate date;
 	Flight flight;
 	List<Reservation> reservations;
-	// List<Ticket> tickets1;
-
 	public FlightInstance(LocalDate date, Flight flight) {
 
 		this.flightInstanceId = index++;
