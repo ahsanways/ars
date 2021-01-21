@@ -4,7 +4,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 public class Flight {
-	String id;
+	private static int flightId;
 	String number;
 	int capacity;
 	Airport departureAirport;
@@ -14,10 +14,9 @@ public class Flight {
 	List<FlightInstance> flightInstances;
 	
 	
-	public Flight(String id, String number, int capacity, Airport departureAirport, Airport arrivalAirport,
+	public Flight(String number, int capacity, Airport departureAirport, Airport arrivalAirport,
 			LocalTime departureTime, LocalTime arrivalTime) {
-		super();
-		this.id = id;
+		flightId++;
 		this.number = number;
 		this.capacity = capacity;
 		this.departureAirport = departureAirport;
@@ -26,8 +25,9 @@ public class Flight {
 		this.arrivalTime = arrivalTime;
 		this.flightInstances = new ArrayList<FlightInstance>();
 	}
-	public String getId() {
-		return id;
+	
+	public int getId() {
+		return flightId;
 	}
 	public String getNumber() {
 		return number;
@@ -51,11 +51,11 @@ public class Flight {
 		return flightInstances;
 	}
 	
-	@Override
-	public String toString() {
-		return "Flight [id=" + id + ", number=" + number + ", capacity=" + capacity + ", departureAirport="
-				+ departureAirport + ", arrivalAirport=" + arrivalAirport + ", departureTime=" + departureTime
-				+ ", arrivalTime=" + arrivalTime + ", flightInstances=" + flightInstances + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Flight [id=" + id + ", number=" + number + ", capacity=" + capacity + ", departureAirport="
+//				+ departureAirport + ", arrivalAirport=" + arrivalAirport + ", departureTime=" + departureTime
+//				+ ", arrivalTime=" + arrivalTime + ", flightInstances=" + flightInstances + "]";
+//	}
 	
 }

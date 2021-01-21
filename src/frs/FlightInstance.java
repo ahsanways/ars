@@ -6,31 +6,25 @@ import java.util.List;
 import service.Resource;
 
 public class FlightInstance implements Resource {
-	String id;
+	private static int flightInstanceId;
 	LocalDate date;
 	Flight flight;
 	List<Reservation> reservations;
 	//List<Ticket> tickets1;
 	
 	
-	public FlightInstance(String id, LocalDate date, Flight flight) {
-		super();
-		this.id = id;
+	public FlightInstance(LocalDate date, Flight flight) {
+		//this.id = id;
+		flightInstanceId++;
 		this.date = date;
 		this.flight = flight;
 		this.reservations = new ArrayList<Reservation>();
 	}
 
 
-	public String getId() {
-		return id;
+	public int getId() {
+		return flightInstanceId;
 	}
-
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
 
 	public LocalDate getDate() {
 		return date;
@@ -56,11 +50,11 @@ public class FlightInstance implements Resource {
 		return reservations;
 	}
 
-
-	@Override
-	public String toString() {
-		return "FlightInstance [id=" + id + ", date=" + date + ", flight=" + flight + ", reservations=" + reservations
-				+ "]";
-	}
+//
+//	@Override
+//	public String toString() {
+//		return "FlightInstance [id=" + id + ", date=" + date + ", flight=" + flight + ", reservations=" + reservations
+//				+ "]";
+//	}
 	
 }
