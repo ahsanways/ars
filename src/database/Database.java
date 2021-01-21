@@ -9,6 +9,7 @@ import frs.Airline;
 import frs.Airport;
 import frs.Flight;
 import frs.FlightInstance;
+import frs.Passenger;
 import frs.Reservation;
 import frs.Ticket;
 import frs.Passenger;
@@ -25,8 +26,10 @@ public class Database {
 	
 	public static List<Flight> flights =new ArrayList<>();
 	
+
 	public static List<Passenger> passengers =new ArrayList<>();
 	
 	public static List<Airline> airlines = new ArrayList<>();
-
+	
+	public static Map<Passenger, Reservation> paxResMap = new HashMap<>();
 }

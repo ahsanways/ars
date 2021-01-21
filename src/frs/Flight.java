@@ -67,12 +67,11 @@ public class Flight {
 	public List<FlightInstance> getFlightInstances() {
 		return flightInstances;
 	}
-
-//	@Override
-//	public String toString() {
-//		return "Flight [id=" + id + ", number=" + number + ", capacity=" + capacity + ", departureAirport="
-//				+ departureAirport + ", arrivalAirport=" + arrivalAirport + ", departureTime=" + departureTime
-//				+ ", arrivalTime=" + arrivalTime + ", flightInstances=" + flightInstances + "]";
-//	}
-
+	
+	@Override
+	public String toString() {
+		return "Flight [id=" + flightId + ", number=" + number + ", capacity=" + capacity + ", departureAirport="
+				+ departureAirport + ", arrivalAirport=" + arrivalAirport + ", departureTime=" + departureTime
+				+ ", arrivalTime=" + arrivalTime + "]";
+	}
 }

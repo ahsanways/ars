@@ -24,6 +24,10 @@ public class Ticket implements Resource {
 		return ticketID;
 	}
 	
+	public String getThisTicketNumber() {
+		return this.ticketNum;
+	}
+	
 	public String getTicketNumber(int length) {
 		//logic for generating a random 20-digit number
 		Random random = new Random();

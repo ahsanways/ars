@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Passenger {
-	int id;
+	private static int passengerId;
 	String firstname;
 	String lastname;
 	LocalDate dob;
@@ -13,9 +13,8 @@ public class Passenger {
 	Address address;
 	List<Reservation> reservations;
 
-	public Passenger(int id, String firstname, String lastname, LocalDate dob, String email, Address address) {
-		super();
-		this.id = id;
+	public Passenger(String firstname, String lastname, LocalDate dob, String email, Address address) {
+		passengerId++;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.dob = dob;
@@ -25,11 +24,7 @@ public class Passenger {
 	}
 
 	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+		return passengerId;
 	}
 
 	public String getFirstname() {
@@ -82,8 +77,8 @@ public class Passenger {
 
 	@Override
 	public String toString() {
-		return "Passenger [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", dob=" + dob
-				+ ", email=" + email + ", address=" + address + ", reservations=" + reservations + "]";
+		return "Passenger ID = " + passengerId + ", firstname=" + firstname + ", lastname=" 
+				+ lastname + ", dob=" + dob
+				+ ", email=" + email + ", address=" + address + " ";
 	}
-
 }

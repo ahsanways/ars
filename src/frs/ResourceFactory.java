@@ -12,6 +12,12 @@ final public class ResourceFactory {
 
 	}
 	
+	public static Passenger getPassenger(String firstname, String lastname, LocalDate dob, String email, Address address) {
+		Passenger passenger = new Passenger(firstname, lastname, dob, email, address);
+		
+		return passenger;
+	}
+	
 	public static Flight getFlight(String number, int capacity, Airport departureAirport, Airport arrivalAirport,
 			LocalTime departureTime, LocalTime arrivalTime, Airline airline) {
 		Flight flight = new Flight(number, capacity, departureAirport, arrivalAirport, departureTime, arrivalTime, airline);
@@ -56,7 +62,7 @@ final public class ResourceFactory {
 
 	public static Ticket createTicket(String resCode, FlightInstance f) {
 		Ticket t = new Ticket(resCode, f);
-		Database.ticketNumMap.put(t.getTicketNumber(20), t);
+		Database.ticketNumMap.put(t.getThisTicketNumber(), t);
 		return t;
 	}
 }
