@@ -10,6 +10,7 @@ import frs.Flight;
 import frs.FlightInstance;
 import frs.Reservation;
 import frs.Ticket;
+import frs.Passenger;
 
 public class Database {
 
@@ -22,5 +23,6 @@ public class Database {
 	public static List<Airport> airports =new ArrayList<>();
 	
 	public static List<Flight> flights =new ArrayList<>();
-
+	
+	public static List<Passenger> passengers =new ArrayList<>();
 }
