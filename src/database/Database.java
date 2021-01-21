@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import frs.Airline;
 import frs.Airport;
 import frs.Flight;
 import frs.FlightInstance;
@@ -25,4 +26,7 @@ public class Database {
 	public static List<Flight> flights =new ArrayList<>();
 	
 	public static List<Passenger> passengers =new ArrayList<>();
+	
+	public static List<Airline> airlines = new ArrayList<>();
+
 }
