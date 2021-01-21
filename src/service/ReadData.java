@@ -58,7 +58,7 @@ public class ReadData {
 		return s;
 	}
 
-	public static void viewReservationDetails(String resCode) {
+	public static void viewTicketDetails(String resCode) {
 		Reservation r = getReservationByCode(resCode);
 		System.out.println("Displaying Ticket Details ");
 		System.out.println("=======================================");
@@ -70,9 +70,24 @@ public class ReadData {
 		System.out.println("=======================================");
 		System.out.println(r.getPassenger().getFirstname() + " " + r.getPassenger().getLastname());
 	}
+	
+	public static void viewReservationDetails(String resCode) {
+		Reservation r = getReservationByCode(resCode);
+		System.out.println("Displaying Flight Details ");
+		System.out.println("===================================================================");
+		System.out.println(displayFlightInstance(r.getFlightInstances()) + " ");
+		System.out.println("Displaying Passenger Details ");
+		System.out.println("===================================================================");
+		System.out.println(r.getPassenger().getFirstname() + " " + r.getPassenger().getLastname());
+		System.out.println("*******************************************************************");
+		System.out.println("\n\n");
+	}
 
-	public static void cancelReservation(String resCode) {
+	public static boolean cancelReservation(String resCode) {
 		Database.resCodeMap.remove(resCode);
+		return Database.resCodeMap.containsKey(resCode);
+		
+		
 	}
 
 	// Outputs list of airlines flying out of a certain airport through the airport

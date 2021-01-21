@@ -82,18 +82,20 @@ public class Main {
 		Reservation r = ResourceFactory.getReservationByPassenger(fli1, p1);
 		Reservation r2 = ResourceFactory.getReservationByPassenger(fli2, p1);
 		String reservationCode = r.getResCode();
+		
 		p1.addReservation(r);
 		p1.addReservation(r2);
+		
 		
 		
 		while (true) {
 			System.out.println("\n1. View List of all Aiports");
 			System.out.println("\n2. View List of all Airlines");
 			System.out.println("\n3. View List of Flights between departure and destination");
-			System.out.println("\n4. View List of my Reservations");
-			System.out.println("\n5. View details of a Reservations");
-			System.out.println("\n6. Make a Reservations");
-			System.out.println("\n7. Cancel a Reservation");
+			System.out.println("\n4. Make a Reservations");
+			System.out.println("\n5. View details of a Reservations with code");
+			System.out.println("\n6. Cancel a Reservation");
+			System.out.println("\n7. View own Reservations");
 			System.out.println("\n8. Confirm and purchase a reservation");
 			System.out.println("\nSelect an option to continue...");
 			Scanner scanner = new Scanner(System.in);
@@ -124,9 +126,11 @@ public class Main {
 				break;
 			case 4:
 				// make a reservation
-				
+				p1.addReservation(r);
+				System.out.println("Reservation Successfully made");
 				ReadData.viewReservationDetails(r.getResCode());
-				System.out.println(r.getResCode());
+				System.out.println("Reservation Successfully made");
+				ReadData.viewReservationDetails(r2.getResCode());
 				break;
 			case 5:
 				// view reservation with reservation code
@@ -134,16 +138,17 @@ public class Main {
 				break;
 			case 6:
 				// cancel reservation
-				ReadData.cancelReservation(reservationCode);
-				System.out.println("Reservation canceled!");
+				if(ReadData.cancelReservation(reservationCode)) {
+					System.out.println("Reservation canceled!");
+				} else {
+					System.out.println("Reservation could not be canceled.");
+				}
+				
 				break;
 			case 7:
 				// view own reservations
 				for(Reservation x : p1.getReservations()) {
 					ReadData.viewReservationDetails(x.getResCode());
-					System.out.println("***********************************************************************************");
-					System.out.println(
-							"***********************************************************************************");
 				}
 				
 				break;
