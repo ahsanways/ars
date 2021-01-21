@@ -36,8 +36,10 @@ final public class ResourceFactory {
 		return airport;
 	}
 
-	public static Resource getAgent(String name) {
-		return new Agent(name);
+	public static Agent createAgent(String name) {
+		Agent a = new Agent(name);
+		Database.agents.add(a);
+		return a;
 	}
 
 	public static Reservation getReservationByPassenger(FlightInstance flightInstance, Passenger passenger) {
@@ -48,9 +50,9 @@ final public class ResourceFactory {
 		return res;
 	}
 	
-	public static Reservation getReservationByAgent(FlightInstance flightInstance, Passenger passenger, Agent agent) {
+	public static Reservation createReservationByAgent(FlightInstance flightInstance, Passenger passenger, Agent agent) {
 		// flightInstance = getFlightInstance();
-		Reservation res = new Reservation(flightInstance, passenger);
+		Reservation res = new Reservation(flightInstance, passenger, agent);
 		//Database.instanceReservationMap.put(res, res.getFlightInstances());
 		Database.resCodeMap.put(res.getResCode(), res);
 		return res;

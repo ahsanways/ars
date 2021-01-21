@@ -48,7 +48,7 @@ public class Reservation implements Resource {
 	}
 
 	public List<Ticket> getTickets() {
-		this.tickets = Helper.issueTickets(this);
+		this.tickets = Helper.issueTickets(this.resCode);
 		return tickets;
 	}
 }

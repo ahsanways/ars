@@ -73,6 +73,7 @@ public class ReadData {
 	
 	public static void viewReservationDetails(String resCode) {
 		Reservation r = getReservationByCode(resCode);
+		System.out.println("Reservation Code: "+resCode);
 		System.out.println("Displaying Flight Details ");
 		System.out.println("===================================================================");
 		System.out.println(displayFlightInstance(r.getFlightInstances()) + " ");
@@ -86,7 +87,6 @@ public class ReadData {
 	public static boolean cancelReservation(String resCode) {
 		Database.resCodeMap.remove(resCode);
 		return Database.resCodeMap.containsKey(resCode);
-		
 		
 	}
 
