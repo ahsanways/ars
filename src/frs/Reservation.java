@@ -5,6 +5,7 @@ import java.util.List;
 
 import service.Resource;
 import service.Helper;
+import service.ReadData;
 import database.Database;
 
 public class Reservation implements Resource {
@@ -28,6 +29,10 @@ public class Reservation implements Resource {
 		this.resCode = Helper.getReservationCode();
 		this.passenger = passenger;
 		this.agentID = agent.getAgentID();
+	}
+	
+	public void confirmReservation(String resCode) {
+		ReadData.viewTicketDetails(resCode);
 	}
 
 	public int getAgentID() {
