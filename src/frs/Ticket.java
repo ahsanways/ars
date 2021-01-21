@@ -6,15 +6,15 @@ import service.ReadData;
 import service.Resource;
 
 public class Ticket implements Resource {
-
-	private static int ticketID;
+	public static int index = 1;
+	private int ticketID;
 	private FlightInstance flightInstance;
 	private String ticketNum;
 	private Reservation reservation;
 	
 	//Map resCode to Reservation
 	Ticket(String resCode, FlightInstance f){
-		ticketID++;
+		this.ticketID = index++;
 		this.ticketNum = getTicketNumber(20);
 		this.reservation = ReadData.getReservationByCode(resCode);
 		this.flightInstance = f;

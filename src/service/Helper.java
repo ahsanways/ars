@@ -39,10 +39,11 @@ public class Helper {
 //	}
 
 	// upon payment, this method is invoked to issue all tickets of this reservation
-	public static List<Ticket> issueTickets(Reservation res) {
+	public static List<Ticket> issueTickets(String resCode) {
+		Reservation reservation = ReadData.getReservationByCode(resCode);
 		List<Ticket> tickets = new ArrayList<>();
-		for (FlightInstance f : res.getFlightInstances()) {
-			Ticket t = ResourceFactory.createTicket(res.getResCode(), f);
+		for (FlightInstance f : reservation.getFlightInstances()) {
+			Ticket t = ResourceFactory.createTicket(reservation.getResCode(), f);
 			tickets.add(t);
 		}
 		return tickets;
