@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import database.Database;
+import service.InsertData;
 import service.Resource;
 
 final public class ResourceFactory {
@@ -11,28 +12,29 @@ final public class ResourceFactory {
 	private ResourceFactory() {
 
 	}
-	
+	//CRUD -- CREATE
 	public static Passenger createPassenger(String firstname, String lastname, LocalDate dob, String email, Address address) {
 		Passenger passenger = new Passenger(firstname, lastname, dob, email, address);
-		Database.passengers.add(passenger);
+		InsertData.insertPassengerInDatabase(passenger);
 		return passenger;
 	}
 	
 	public static Flight createFlight(String number, int capacity, Airport departureAirport, Airport arrivalAirport,
 			LocalTime departureTime, LocalTime arrivalTime, Airline airline) {
 		Flight flight = new Flight(number, capacity, departureAirport, arrivalAirport, departureTime, arrivalTime, airline);
-		Database.flights.add(flight);
+		InsertData.insertFlightInDatabase(flight);
 		return flight;
 	}
 	
 	public static Airline createAirline(String code, String name, String history) {
 		Airline airline = new Airline(code, name, history);
+		InsertData.insertAirlineInDatabase(airline);
 		return airline;
 	}
 	
 	public static Airport createAirport(String code, String name, Address address) {
 		Airport airport = new Airport(code, name, address);
-		Database.airports.add(airport);
+		InsertData.insertAirportInDatabase(airport);
 		return airport;
 	}
 
@@ -42,31 +44,29 @@ final public class ResourceFactory {
 
 	public static Reservation getReservationByPassenger(FlightInstance flightInstance, Passenger passenger) {
 		// flightInstance = getFlightInstance();
-		Reservation res = new Reservation(flightInstance, passenger);
-		Database.resCodeMap.put(res.getResCode(), res);
+		Reservation reservation = new Reservation(flightInstance, passenger);
+		InsertData.insertReservationInDatabase(reservation);
 		//Database.instanceReservationMap.put(res, res.getFlightInstances());
-		return res;
+		return reservation;
 	}
 	
 	public static Reservation getReservationByAgent(FlightInstance flightInstance, Passenger passenger, Agent agent) {
 		// flightInstance = getFlightInstance();
-		Reservation res = new Reservation(flightInstance, passenger);
+		Reservation reservation = new Reservation(flightInstance, passenger, agent);
 		//Database.instanceReservationMap.put(res, res.getFlightInstances());
-		Database.resCodeMap.put(res.getResCode(), res);
-		return res;
+		InsertData.insertReservationInDatabase(reservation);
+		return reservation;
 	}
 
 	public static FlightInstance createFlightInstance(LocalDate date, Flight flight) { 
 		FlightInstance f = new FlightInstance(date, flight);
-		Database.flightInstances.add(f);
+		InsertData.insertFlightInstanceInDatabase(f);
 		return f;
 	}
 
 	public static Ticket createTicket(String resCode, FlightInstance f) {
 		Ticket t = new Ticket(resCode, f);
-		Database.ticketNumMap.put(t.getThisTicketNumber(), t);
+		InsertData.insertTicketInDatabase(t);
 		return t;
 	}
-	
-	
 }

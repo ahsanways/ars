@@ -7,6 +7,7 @@ import java.util.List;
 import database.Database;
 import frs.*;
 
+//CRUD - READ
 public class ReadData {
 
 	public static Reservation getReservationByCode(String resCode) {
