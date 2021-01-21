@@ -15,19 +15,19 @@ public class ReadData {
 		return Database.resCodeMap.get(resCode);
 	}
 	
-	public static List<Flight> flightsByDepartureDestination(String DepAirportCode, String DestAirportCode, LocalDate date) {
-		List<Flight> flights = new ArrayList<Flight>();
+	public static List<FlightInstance> flightsByDepartureDestination(String DepAirportCode, String DestAirportCode, LocalDate date) {
+		List<FlightInstance> flightInstances = new ArrayList<>();
 		for (Flight f : Database.flights) 
 		{ 
-		    if(f.getDepartureAirport().getCode() == DepAirportCode && f.getArrivalAirport().getCode() == DestAirportCode ) {
+		    if(f.getDepartureAirport().getCode().equals(DepAirportCode) && f.getArrivalAirport().getCode().equals(DestAirportCode) ) {
 		    	for(FlightInstance fi:f.getFlightInstances()) {
 		    		if(fi.getDate().compareTo(date) == 0) {
-		    			flights.add(f);
+		    			flightInstances.add(fi);
 		    		}
 		    	}
 		    }
 		}
-		return flights;
+		return flightInstances;
 	}
 	
 	public static List<Reservation> getReservationByPassenger(int id){

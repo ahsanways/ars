@@ -18,19 +18,19 @@ final public class ResourceFactory {
 		return passenger;
 	}
 	
-	public static Flight getFlight(String number, int capacity, Airport departureAirport, Airport arrivalAirport,
+	public static Flight createFlight(String number, int capacity, Airport departureAirport, Airport arrivalAirport,
 			LocalTime departureTime, LocalTime arrivalTime, Airline airline) {
 		Flight flight = new Flight(number, capacity, departureAirport, arrivalAirport, departureTime, arrivalTime, airline);
 		Database.flights.add(flight);
 		return flight;
 	}
 	
-	public static Airline getAirline(String code, String name, String history) {
+	public static Airline createAirline(String code, String name, String history) {
 		Airline airline = new Airline(code, name, history);
 		return airline;
 	}
 	
-	public static Airport getAirport(String code, String name, Address address) {
+	public static Airport createAirport(String code, String name, Address address) {
 		Airport airport = new Airport(code, name, address);
 		Database.airports.add(airport);
 		return airport;
@@ -56,7 +56,7 @@ final public class ResourceFactory {
 		return res;
 	}
 
-	public static FlightInstance getFlightInstance(LocalDate date, Flight flight) { 
+	public static FlightInstance createFlightInstance(LocalDate date, Flight flight) { 
 		return new FlightInstance(date, flight);
 	}
 
@@ -65,4 +65,6 @@ final public class ResourceFactory {
 		Database.ticketNumMap.put(t.getThisTicketNumber(), t);
 		return t;
 	}
+	
+	
 }

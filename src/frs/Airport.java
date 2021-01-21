@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Airport {
-	public static int AirportId;
+	public static int index = 1;
+	public int AirportId;
 	String code;
 	String name;
 	Address address;
 	List<Flight> flights;
 
 	public Airport(String code, String name, Address address) {
-		AirportId++;
+		this.AirportId = index++;
 		this.code = code;
 		this.name = name;
 		this.address = address;
@@ -54,9 +55,9 @@ public class Airport {
 		this.flights.add(flight);
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Airport [id=" + id + ", code=" + code + ", name=" + name + ", address=" + address + "]";
-//	}
+	@Override
+	public String toString() {
+		return AirportId + ". Airport Code: " + code +" \tName: " + name;
+	}
 
 }

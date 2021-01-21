@@ -5,7 +5,8 @@ import java.time.LocalTime;
 import java.util.List;
 
 public class Flight {
-	private static int flightId;
+	private int flightId;
+	public static int index = 1;
 	String number;
 	int capacity;
 	Airport departureAirport;
@@ -17,7 +18,7 @@ public class Flight {
 
 	public Flight(String number, int capacity, Airport departureAirport, Airport arrivalAirport,
 			LocalTime departureTime, LocalTime arrivalTime, Airline airline) {
-		flightId++;
+		this.flightId = index++;
 		this.number = number;
 		this.capacity = capacity;
 		this.departureAirport = departureAirport;
@@ -67,7 +68,7 @@ public class Flight {
 	public List<FlightInstance> getFlightInstances() {
 		return flightInstances;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Flight [id=" + flightId + ", number=" + number + ", capacity=" + capacity + ", departureAirport="
