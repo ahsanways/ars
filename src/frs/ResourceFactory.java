@@ -12,9 +12,9 @@ final public class ResourceFactory {
 
 	}
 	
-	public static Passenger getPassenger(String firstname, String lastname, LocalDate dob, String email, Address address) {
+	public static Passenger createPassenger(String firstname, String lastname, LocalDate dob, String email, Address address) {
 		Passenger passenger = new Passenger(firstname, lastname, dob, email, address);
-		
+		Database.passengers.add(passenger);
 		return passenger;
 	}
 	
@@ -57,7 +57,9 @@ final public class ResourceFactory {
 	}
 
 	public static FlightInstance createFlightInstance(LocalDate date, Flight flight) { 
-		return new FlightInstance(date, flight);
+		FlightInstance f = new FlightInstance(date, flight);
+		Database.flightInstances.add(f);
+		return f;
 	}
 
 	public static Ticket createTicket(String resCode, FlightInstance f) {

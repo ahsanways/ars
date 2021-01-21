@@ -26,6 +26,7 @@ public class Database {
 	
 	public static List<Flight> flights =new ArrayList<>();
 	
+	public static List<FlightInstance> flightInstances = new ArrayList<>();	
 
 	public static List<Passenger> passengers =new ArrayList<>();
 	

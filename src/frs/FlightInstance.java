@@ -47,11 +47,10 @@ public class FlightInstance implements Resource {
 
 	@Override
 	public String toString() {
-		return flight.getDepartureTime() + " - " + 
-	flight.getArrivalTime() + 
-	flight.getDepartureAirport().getName() + 
-	" to " + flight.getArrivalAirport().getName() + 
-	"\n Date: " + date +" \tDeparture: ";
+		return "-------------------------------------------------------------------\n" + "Departs at: "
+				+ flight.getDepartureTime() + "\t\tReaches at: " + flight.getArrivalTime() + "\nDeparts from: "
+				+ flight.getDepartureAirport().getName() + "\tLands at: " + flight.getArrivalAirport().getName()
+				+ "\nDate: " + date + "\n-------------------------------------------------------------------";
 	}
 
 }

@@ -12,22 +12,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// populating data
-		Address add1 = new Address(1, "A", "B", "C", "D");
-		Airport a1 = ResourceFactory.createAirport("ABC", "Crazy Airport", add1);
-		Airport a2 = ResourceFactory.createAirport("DEF", "Really Crazy Airport", add1);
 
-		Airline ar1 = ResourceFactory.createAirline("QR", "Qatar Airways", "what is this");
-		Airline ar2 = ResourceFactory.createAirline("AA", "American Airlines", "what is this");
-
-		Flight fl1 = ResourceFactory.createFlight("3RW", 300, a1, a2, LocalTime.parse("03:18:23"),
-				LocalTime.parse("03:15:00"), ar1);
-		Flight fl2 = ResourceFactory.createFlight("5TY", 500, a2, a1, LocalTime.parse("03:18:23"),
-				LocalTime.parse("08:45:00"), ar2);
-		
-		FlightInstance fli1 = ResourceFactory.createFlightInstance(LocalDate.of(2017, 1, 13), fl1);
-		FlightInstance fli2 = ResourceFactory.createFlightInstance(LocalDate.of(2018, 1, 13), fl2);
-		FlightInstance fli3 = ResourceFactory.createFlightInstance(LocalDate.of(2019, 1, 13), fl1);
-		FlightInstance fli4 = ResourceFactory.createFlightInstance(LocalDate.of(2021, 1, 13), fl2);
 		
 		System.out
 				.println("\n========================= Welcome to Airline Reservation System ========================");
@@ -73,6 +58,34 @@ public class Main {
 	}
 
 	public static void showPassengerMenu() {
+		
+		Address add1 = new Address(1, "A", "B", "C", "D");
+		Passenger p1 = ResourceFactory.createPassenger("Ahsan", "Waseem", LocalDate.of(1998, 2, 14), "awaseem@miu.edu", add1);
+		Passenger p2 = ResourceFactory.createPassenger("Henry", "Kato", LocalDate.of(1998, 2, 13), "hkato@miu.edu", add1);
+		
+		Airport a1 = ResourceFactory.createAirport("ABC", "Crazy Airport", add1);
+		Airport a2 = ResourceFactory.createAirport("DEF", "Really Crazy Airport", add1);
+
+		Airline ar1 = ResourceFactory.createAirline("QR", "Qatar Airways", "what is this");
+		Airline ar2 = ResourceFactory.createAirline("AA", "American Airlines", "what is this");
+
+		Flight fl1 = ResourceFactory.createFlight("3RW", 300, a1, a2, LocalTime.parse("03:18:00"),
+				LocalTime.parse("05:47:00"), ar1);
+		Flight fl2 = ResourceFactory.createFlight("5TY", 500, a2, a1, LocalTime.parse("02:07:00"),
+				LocalTime.parse("08:45:00"), ar2);
+		
+		FlightInstance fli1 = ResourceFactory.createFlightInstance(LocalDate.of(2017, 1, 13), fl1);
+		FlightInstance fli2 = ResourceFactory.createFlightInstance(LocalDate.of(2018, 1, 13), fl2);
+		FlightInstance fli3 = ResourceFactory.createFlightInstance(LocalDate.of(2019, 1, 13), fl1);
+		FlightInstance fli4 = ResourceFactory.createFlightInstance(LocalDate.of(2021, 1, 13), fl2);
+		
+		Reservation r = ResourceFactory.getReservationByPassenger(fli1, p1);
+		Reservation r2 = ResourceFactory.getReservationByPassenger(fli2, p1);
+		String reservationCode = r.getResCode();
+		p1.addReservation(r);
+		p1.addReservation(r2);
+		
+		
 		while (true) {
 			System.out.println("\n1. View List of all Aiports");
 			System.out.println("\n2. View List of all Airlines");
@@ -104,24 +117,38 @@ public class Main {
 			case 3:
 				// list of flights for dept airport arrival airport and date
 				
-				for(FlightInstance fl : ReadData.flightsByDepartureDestination("ABC", "DEF", LocalDate.of(2018, 1, 13))) {
+				for(FlightInstance fl : ReadData.getFlightsByDepartureArrival("ABC", "DEF", LocalDate.of(2019, 1, 13))) {
 					System.out.println(fl);
 				}
 				
 				break;
 			case 4:
-				System.out.println("hey");
+				// make a reservation
+				
+				ReadData.viewReservationDetails(r.getResCode());
+				System.out.println(r.getResCode());
 				break;
 			case 5:
-				System.out.println("hey");
+				// view reservation with reservation code
+				ReadData.viewReservationDetails(reservationCode);
 				break;
 			case 6:
-				System.out.println("hey");
+				// cancel reservation
+				ReadData.cancelReservation(reservationCode);
+				System.out.println("Reservation canceled!");
 				break;
 			case 7:
-				System.out.println("hey");
+				// view own reservations
+				for(Reservation x : p1.getReservations()) {
+					ReadData.viewReservationDetails(x.getResCode());
+					System.out.println("***********************************************************************************");
+					System.out.println(
+							"***********************************************************************************");
+				}
+				
 				break;
 			case 8:
+				
 				System.out.println("hey");
 				break;
 			default:
