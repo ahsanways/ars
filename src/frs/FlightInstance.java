@@ -20,8 +20,7 @@ public class FlightInstance implements Resource {
 		this.flight = flight;
 		this.reservations = new ArrayList<Reservation>();
 	}
-
-
+	
 	public int getId() {
 		return flightInstanceId;
 	}
@@ -50,11 +49,9 @@ public class FlightInstance implements Resource {
 		return reservations;
 	}
 
-//
-//	@Override
-//	public String toString() {
-//		return "FlightInstance [id=" + id + ", date=" + date + ", flight=" + flight + ", reservations=" + reservations
-//				+ "]";
-//	}
+	@Override
+	public String toString() {
+		return  "InstanceID: " + this.getId() + " " +"Date: " + this.getDate() + " " + "InstanceID: " + this.flight.toString() + " ";
+	}
 	
 }

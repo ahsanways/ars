@@ -8,6 +8,7 @@ import java.util.Map;
 import frs.Airport;
 import frs.Flight;
 import frs.FlightInstance;
+import frs.Passenger;
 import frs.Reservation;
 import frs.Ticket;
 
@@ -22,5 +23,7 @@ public class Database {
 	public static List<Airport> airports =new ArrayList<>();
 	
 	public static List<Flight> flights =new ArrayList<>();
+	
+	public static Map<Passenger, Reservation> paxResMap = new HashMap<>();
 
 }
